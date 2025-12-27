@@ -29,8 +29,9 @@ async function initSqlEngine() {
 
   initPromise = (async () => {
     try {
+      // Use CDN for sql.js WASM files - works on any hosting
       SQL = await initSqlJs({
-        locateFile: file => `https://sql.js.org/dist/${file}`
+        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
       });
       return SQL;
     } catch (error) {
@@ -104,9 +105,9 @@ function validateQuery(sql) {
   if (!sql || typeof sql !== 'string') {
     return false;
   }
-  
+
   const trimmed = sql.trim().toUpperCase();
-  
+
   // Prevent dangerous operations
   const dangerousKeywords = ['DROP', 'DELETE', 'ALTER', 'TRUNCATE', 'PRAGMA'];
   for (const keyword of dangerousKeywords) {
@@ -114,7 +115,7 @@ function validateQuery(sql) {
       return false;
     }
   }
-  
+
   return true;
 }
 
@@ -131,10 +132,10 @@ export function executeQuery(sql) {
   }
 
   if (!validateQuery(sql)) {
-    return { 
-      columns: [], 
-      values: [], 
-      error: 'Invalid or unsafe SQL query. Only SELECT queries are allowed.' 
+    return {
+      columns: [],
+      values: [],
+      error: 'Invalid or unsafe SQL query. Only SELECT queries are allowed.'
     };
   }
 
@@ -166,10 +167,10 @@ export function executeQuery(sql) {
  */
 export async function executeQueryOnDb(sql, dbName) {
   if (!validateQuery(sql)) {
-    return { 
-      columns: [], 
-      values: [], 
-      error: 'Invalid or unsafe SQL query. Only SELECT queries are allowed.' 
+    return {
+      columns: [],
+      values: [],
+      error: 'Invalid or unsafe SQL query. Only SELECT queries are allowed.'
     };
   }
 
