@@ -29,9 +29,16 @@ async function initSqlEngine() {
 
   initPromise = (async () => {
     try {
-      // Use CDN for sql.js WASM files - works on any hosting
+      // Use local WASM file with fallback to CDN
       SQL = await initSqlJs({
-        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
+        locateFile: file => {
+          // In production (GitHub Pages), use the base path
+          if (import.meta.env.PROD) {
+            return `/sql-practice/${file}`
+          }
+          // In development, use CDN
+          return `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
+        }
       });
       return SQL;
     } catch (error) {
