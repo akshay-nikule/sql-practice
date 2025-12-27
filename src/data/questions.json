@@ -1,0 +1,878 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "title": "Select All Patients",
+      "difficulty": "easy",
+      "category": "SELECT Basics",
+      "keywords": [
+        "select"
+      ],
+      "database": "hospital",
+      "description": "Write a query to retrieve all columns and all rows from the **patients** table.",
+      "hint": "Use SELECT * to get all columns",
+      "expectedQuery": "SELECT * FROM patients"
+    },
+    {
+      "id": 2,
+      "title": "Patient Names Only",
+      "difficulty": "easy",
+      "category": "SELECT Basics",
+      "keywords": [
+        "select"
+      ],
+      "database": "hospital",
+      "description": "Write a query to retrieve only the **first_name** and **last_name** of all patients.",
+      "hint": "List the column names separated by commas after SELECT",
+      "expectedQuery": "SELECT first_name, last_name FROM patients"
+    },
+    {
+      "id": 3,
+      "title": "All Students Info",
+      "difficulty": "easy",
+      "category": "SELECT Basics",
+      "keywords": [
+        "select"
+      ],
+      "database": "university",
+      "description": "Write a query to get all information about all **students**.",
+      "hint": "Use SELECT * FROM table_name",
+      "expectedQuery": "SELECT * FROM students"
+    },
+    {
+      "id": 4,
+      "title": "Employee Contact Details",
+      "difficulty": "easy",
+      "category": "SELECT Basics",
+      "keywords": [
+        "select"
+      ],
+      "database": "company",
+      "description": "Write a query to get **first_name**, **email**, and **phone** of all employees.",
+      "hint": "Select specific columns separated by commas",
+      "expectedQuery": "SELECT first_name, email, phone FROM employees"
+    },
+    {
+      "id": 5,
+      "title": "Course List",
+      "difficulty": "easy",
+      "category": "SELECT Basics",
+      "keywords": [
+        "select"
+      ],
+      "database": "university",
+      "description": "Show the **course_code** and **name** of all courses.",
+      "hint": "SELECT the required columns from courses table",
+      "expectedQuery": "SELECT course_code, name FROM courses"
+    },
+    {
+      "id": 6,
+      "title": "Male Patients",
+      "difficulty": "easy",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "hospital",
+      "description": "Write a query to find all **male** patients (gender = 'M').",
+      "hint": "Use WHERE clause to filter rows",
+      "expectedQuery": "SELECT * FROM patients WHERE gender = 'M'"
+    },
+    {
+      "id": 7,
+      "title": "High Salary Employees",
+      "difficulty": "easy",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "company",
+      "description": "Find all employees who earn more than **₹100,000**.",
+      "hint": "Use > operator in WHERE clause",
+      "expectedQuery": "SELECT * FROM employees WHERE salary > 100000"
+    },
+    {
+      "id": 8,
+      "title": "Toppers",
+      "difficulty": "easy",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "university",
+      "description": "Find all students with **CGPA greater than 9.0**.",
+      "hint": "Use > operator to compare CGPA",
+      "expectedQuery": "SELECT * FROM students WHERE cgpa > 9.0"
+    },
+    {
+      "id": 9,
+      "title": "Active Projects",
+      "difficulty": "easy",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "company",
+      "description": "Show all projects that have status **'active'**.",
+      "hint": "Use WHERE status = 'active'",
+      "expectedQuery": "SELECT * FROM projects WHERE status = 'active'"
+    },
+    {
+      "id": 10,
+      "title": "Patients by City",
+      "difficulty": "easy",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "hospital",
+      "description": "Find all patients from **Mumbai**.",
+      "hint": "Filter by city column",
+      "expectedQuery": "SELECT * FROM patients WHERE city = 'Mumbai'"
+    },
+    {
+      "id": 11,
+      "title": "Sort Doctors by Salary",
+      "difficulty": "easy",
+      "category": "ORDER BY",
+      "keywords": [
+        "order by"
+      ],
+      "database": "hospital",
+      "description": "List all doctors ordered by their **salary** from highest to lowest.",
+      "hint": "Use ORDER BY with DESC for descending order",
+      "expectedQuery": "SELECT * FROM doctors ORDER BY salary DESC"
+    },
+    {
+      "id": 12,
+      "title": "Students by CGPA",
+      "difficulty": "easy",
+      "category": "ORDER BY",
+      "keywords": [
+        "order by"
+      ],
+      "database": "university",
+      "description": "Show all students ordered by **CGPA** (highest first), then by **first_name** alphabetically.",
+      "hint": "ORDER BY can take multiple columns",
+      "expectedQuery": "SELECT * FROM students ORDER BY cgpa DESC, first_name"
+    },
+    {
+      "id": 13,
+      "title": "Recent Hires",
+      "difficulty": "easy",
+      "category": "ORDER BY",
+      "keywords": [
+        "order by"
+      ],
+      "database": "company",
+      "description": "List all employees ordered by **hire_date** from newest to oldest.",
+      "hint": "Use ORDER BY hire_date DESC",
+      "expectedQuery": "SELECT * FROM employees ORDER BY hire_date DESC"
+    },
+    {
+      "id": 14,
+      "title": "Count All Patients",
+      "difficulty": "easy",
+      "category": "Aggregate Functions",
+      "keywords": [
+        "count"
+      ],
+      "database": "hospital",
+      "description": "Write a query to count the total number of patients.",
+      "hint": "Use COUNT(*) aggregate function",
+      "expectedQuery": "SELECT COUNT(*) FROM patients"
+    },
+    {
+      "id": 15,
+      "title": "Count Employees",
+      "difficulty": "easy",
+      "category": "Aggregate Functions",
+      "keywords": [
+        "count"
+      ],
+      "database": "company",
+      "description": "Count the total number of employees in the company.",
+      "hint": "Use COUNT(*) function",
+      "expectedQuery": "SELECT COUNT(*) FROM employees"
+    },
+    {
+      "id": 16,
+      "title": "Average Doctor Salary",
+      "difficulty": "medium",
+      "category": "Aggregate Functions",
+      "keywords": [
+        "avg"
+      ],
+      "database": "hospital",
+      "description": "Find the **average salary** of all doctors.",
+      "hint": "Use AVG() aggregate function",
+      "expectedQuery": "SELECT AVG(salary) FROM doctors"
+    },
+    {
+      "id": 17,
+      "title": "Total Project Budget",
+      "difficulty": "medium",
+      "category": "Aggregate Functions",
+      "keywords": [
+        "sum"
+      ],
+      "database": "company",
+      "description": "Calculate the **total budget** of all projects.",
+      "hint": "Use SUM() aggregate function",
+      "expectedQuery": "SELECT SUM(budget) FROM projects"
+    },
+    {
+      "id": 18,
+      "title": "Highest CGPA",
+      "difficulty": "medium",
+      "category": "Aggregate Functions",
+      "keywords": [
+        "max"
+      ],
+      "database": "university",
+      "description": "Find the **highest CGPA** among all students.",
+      "hint": "Use MAX() function",
+      "expectedQuery": "SELECT MAX(cgpa) FROM students"
+    },
+    {
+      "id": 19,
+      "title": "Lowest Employee Salary",
+      "difficulty": "medium",
+      "category": "Aggregate Functions",
+      "keywords": [
+        "min"
+      ],
+      "database": "company",
+      "description": "Find the **minimum salary** in the company.",
+      "hint": "Use MIN() function",
+      "expectedQuery": "SELECT MIN(salary) FROM employees"
+    },
+    {
+      "id": 20,
+      "title": "Unique Cities",
+      "difficulty": "easy",
+      "category": "DISTINCT",
+      "keywords": [
+        "distinct"
+      ],
+      "database": "hospital",
+      "description": "List all **unique cities** where patients live.",
+      "hint": "Use SELECT DISTINCT",
+      "expectedQuery": "SELECT DISTINCT city FROM patients"
+    },
+    {
+      "id": 21,
+      "title": "Unique States",
+      "difficulty": "easy",
+      "category": "DISTINCT",
+      "keywords": [
+        "distinct"
+      ],
+      "database": "university",
+      "description": "Show all **unique states** where students are from.",
+      "hint": "Use DISTINCT keyword",
+      "expectedQuery": "SELECT DISTINCT state FROM students"
+    },
+    {
+      "id": 22,
+      "title": "Patients per City",
+      "difficulty": "medium",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "count"
+      ],
+      "database": "hospital",
+      "description": "Count the number of patients in **each city**. Show city and count.",
+      "hint": "Use GROUP BY with COUNT()",
+      "expectedQuery": "SELECT city, COUNT(*) FROM patients GROUP BY city"
+    },
+    {
+      "id": 23,
+      "title": "Employees per Department",
+      "difficulty": "medium",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "count"
+      ],
+      "database": "company",
+      "description": "Count employees in **each department**. Show department_id and count.",
+      "hint": "Use GROUP BY department_id with COUNT()",
+      "expectedQuery": "SELECT department_id, COUNT(*) FROM employees GROUP BY department_id"
+    },
+    {
+      "id": 24,
+      "title": "Average CGPA by Department",
+      "difficulty": "medium",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "avg"
+      ],
+      "database": "university",
+      "description": "Find the **average CGPA** for each department.",
+      "hint": "Use GROUP BY with AVG()",
+      "expectedQuery": "SELECT department_id, AVG(cgpa) FROM students GROUP BY department_id"
+    },
+    {
+      "id": 25,
+      "title": "Department Salary Totals",
+      "difficulty": "medium",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "sum"
+      ],
+      "database": "company",
+      "description": "Calculate the **total salary** expense for each department.",
+      "hint": "Use GROUP BY with SUM(salary)",
+      "expectedQuery": "SELECT department_id, SUM(salary) FROM employees GROUP BY department_id"
+    },
+    {
+      "id": 26,
+      "title": "Busy Departments",
+      "difficulty": "medium",
+      "category": "HAVING",
+      "keywords": [
+        "having",
+        "group by",
+        "count"
+      ],
+      "database": "company",
+      "description": "Find departments with **more than 3 employees**. Show department_id and count.",
+      "hint": "Use HAVING to filter groups",
+      "expectedQuery": "SELECT department_id, COUNT(*) FROM employees GROUP BY department_id HAVING COUNT(*) > 3"
+    },
+    {
+      "id": 27,
+      "title": "Popular Cities",
+      "difficulty": "medium",
+      "category": "HAVING",
+      "keywords": [
+        "having",
+        "group by",
+        "count"
+      ],
+      "database": "hospital",
+      "description": "Find cities with **2 or more patients**.",
+      "hint": "Use HAVING COUNT(*) >= 2",
+      "expectedQuery": "SELECT city, COUNT(*) FROM patients GROUP BY city HAVING COUNT(*) >= 2"
+    },
+    {
+      "id": 28,
+      "title": "High-Paying Departments",
+      "difficulty": "hard",
+      "category": "HAVING",
+      "keywords": [
+        "having",
+        "group by",
+        "avg"
+      ],
+      "database": "company",
+      "description": "Find departments where **average salary is above ₹100,000**.",
+      "hint": "Use HAVING with AVG(salary) > 100000",
+      "expectedQuery": "SELECT department_id, AVG(salary) FROM employees GROUP BY department_id HAVING AVG(salary) > 100000"
+    },
+    {
+      "id": 29,
+      "title": "Doctor Details with Department",
+      "difficulty": "medium",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "hospital",
+      "description": "Show each doctor's **first_name**, **last_name**, and their **department name**.",
+      "hint": "JOIN doctors with departments",
+      "expectedQuery": "SELECT d.first_name, d.last_name, dept.name FROM doctors d JOIN departments dept ON d.department_id = dept.department_id"
+    },
+    {
+      "id": 30,
+      "title": "Student with Department Name",
+      "difficulty": "medium",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "university",
+      "description": "Show student **first_name**, **last_name**, and their **department name**.",
+      "hint": "JOIN students with departments",
+      "expectedQuery": "SELECT s.first_name, s.last_name, d.name FROM students s JOIN departments d ON s.department_id = d.department_id"
+    },
+    {
+      "id": 31,
+      "title": "Employee Department Info",
+      "difficulty": "medium",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "company",
+      "description": "List employee **first_name**, **job_title**, and **department name**.",
+      "hint": "JOIN employees with departments",
+      "expectedQuery": "SELECT e.first_name, e.job_title, d.name FROM employees e JOIN departments d ON e.department_id = d.department_id"
+    },
+    {
+      "id": 32,
+      "title": "Patient Admission Details",
+      "difficulty": "medium",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "hospital",
+      "description": "Show patient **first_name**, **last_name**, **admission_date**, and **diagnosis** for all admissions.",
+      "hint": "JOIN patients with admissions",
+      "expectedQuery": "SELECT p.first_name, p.last_name, a.admission_date, a.diagnosis FROM patients p JOIN admissions a ON p.patient_id = a.patient_id"
+    },
+    {
+      "id": 33,
+      "title": "Courses with Professor Names",
+      "difficulty": "medium",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "university",
+      "description": "Show **course name** and the **professor's full name** (first_name + last_name) teaching it.",
+      "hint": "JOIN courses with professors",
+      "expectedQuery": "SELECT c.name, p.first_name, p.last_name FROM courses c JOIN professors p ON c.professor_id = p.professor_id"
+    },
+    {
+      "id": 34,
+      "title": "Project Team Members",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "company",
+      "description": "Show **project name**, **employee first_name**, and their **role** for all assignments.",
+      "hint": "JOIN projects with assignments, then with employees",
+      "expectedQuery": "SELECT p.name, e.first_name, a.role FROM projects p JOIN assignments a ON p.project_id = a.project_id JOIN employees e ON a.employee_id = e.employee_id"
+    },
+    {
+      "id": 35,
+      "title": "Patient with Doctor Info",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "hospital",
+      "description": "For each admission, show **patient name**, **doctor name**, and **diagnosis**.",
+      "hint": "JOIN admissions with both patients and doctors",
+      "expectedQuery": "SELECT p.first_name AS patient_first, p.last_name AS patient_last, d.first_name AS doctor_first, d.last_name AS doctor_last, a.diagnosis FROM admissions a JOIN patients p ON a.patient_id = p.patient_id JOIN doctors d ON a.doctor_id = d.doctor_id"
+    },
+    {
+      "id": 36,
+      "title": "Students with Course Grades",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "university",
+      "description": "Show student **first_name**, **course name**, and **grade** for all enrollments.",
+      "hint": "JOIN students → enrollments → courses",
+      "expectedQuery": "SELECT s.first_name, c.name, e.grade FROM students s JOIN enrollments e ON s.student_id = e.student_id JOIN courses c ON e.course_id = c.course_id"
+    },
+    {
+      "id": 37,
+      "title": "Patients with Allergies",
+      "difficulty": "medium",
+      "category": "NULL",
+      "keywords": [
+        "null"
+      ],
+      "database": "hospital",
+      "description": "Find all patients who have **allergies** (allergies is NOT NULL).",
+      "hint": "Use IS NOT NULL",
+      "expectedQuery": "SELECT * FROM patients WHERE allergies IS NOT NULL"
+    },
+    {
+      "id": 38,
+      "title": "Patients without Allergies",
+      "difficulty": "medium",
+      "category": "NULL",
+      "keywords": [
+        "null"
+      ],
+      "database": "hospital",
+      "description": "Find all patients who do **not have allergies** (allergies is NULL).",
+      "hint": "Use IS NULL",
+      "expectedQuery": "SELECT * FROM patients WHERE allergies IS NULL"
+    },
+    {
+      "id": 39,
+      "title": "Current Admissions",
+      "difficulty": "medium",
+      "category": "NULL",
+      "keywords": [
+        "null"
+      ],
+      "database": "hospital",
+      "description": "Find all admissions where patient **has not been discharged yet** (discharge_date is NULL).",
+      "hint": "Patients still in hospital have NULL discharge_date",
+      "expectedQuery": "SELECT * FROM admissions WHERE discharge_date IS NULL"
+    },
+    {
+      "id": 40,
+      "title": "Name Starting with A",
+      "difficulty": "easy",
+      "category": "LIKE",
+      "keywords": [
+        "like"
+      ],
+      "database": "hospital",
+      "description": "Find all patients whose **first_name starts with 'A'**.",
+      "hint": "Use LIKE 'A%'",
+      "expectedQuery": "SELECT * FROM patients WHERE first_name LIKE 'A%'"
+    },
+    {
+      "id": 41,
+      "title": "Name Ending with 'a'",
+      "difficulty": "easy",
+      "category": "LIKE",
+      "keywords": [
+        "like"
+      ],
+      "database": "university",
+      "description": "Find all students whose **first_name ends with 'a'**.",
+      "hint": "Use LIKE '%a'",
+      "expectedQuery": "SELECT * FROM students WHERE first_name LIKE '%a'"
+    },
+    {
+      "id": 42,
+      "title": "Email Contains 'sharma'",
+      "difficulty": "medium",
+      "category": "LIKE",
+      "keywords": [
+        "like"
+      ],
+      "database": "company",
+      "description": "Find all employees whose **email contains 'sharma'**.",
+      "hint": "Use LIKE '%sharma%'",
+      "expectedQuery": "SELECT * FROM employees WHERE email LIKE '%sharma%'"
+    },
+    {
+      "id": 43,
+      "title": "Five Letter Names",
+      "difficulty": "medium",
+      "category": "LIKE",
+      "keywords": [
+        "like"
+      ],
+      "database": "hospital",
+      "description": "Find all patients whose **first_name is exactly 5 characters** long.",
+      "hint": "Use LIKE with 5 underscores: '_____'",
+      "expectedQuery": "SELECT * FROM patients WHERE first_name LIKE '_____'"
+    },
+    {
+      "id": 44,
+      "title": "Maharashtra or Gujarat",
+      "difficulty": "medium",
+      "category": "IN",
+      "keywords": [
+        "in"
+      ],
+      "database": "hospital",
+      "description": "Find all patients from **Maharashtra or Gujarat**.",
+      "hint": "Use IN ('Maharashtra', 'Gujarat')",
+      "expectedQuery": "SELECT * FROM patients WHERE state IN ('Maharashtra', 'Gujarat')"
+    },
+    {
+      "id": 45,
+      "title": "CS or EC Department",
+      "difficulty": "medium",
+      "category": "IN",
+      "keywords": [
+        "in"
+      ],
+      "database": "university",
+      "description": "Find all students in department_id **1 or 2** (Computer Science or Electronics).",
+      "hint": "Use IN (1, 2)",
+      "expectedQuery": "SELECT * FROM students WHERE department_id IN (1, 2)"
+    },
+    {
+      "id": 46,
+      "title": "Multiple Conditions",
+      "difficulty": "medium",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "company",
+      "description": "Find employees in **Engineering** (department_id = 1) who earn more than **₹100,000**.",
+      "hint": "Use AND to combine conditions",
+      "expectedQuery": "SELECT * FROM employees WHERE department_id = 1 AND salary > 100000"
+    },
+    {
+      "id": 47,
+      "title": "Senior or High Paid",
+      "difficulty": "medium",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "company",
+      "description": "Find employees who are either **hired before 2018** OR earn more than **₹150,000**.",
+      "hint": "Use OR to combine conditions",
+      "expectedQuery": "SELECT * FROM employees WHERE hire_date < '2018-01-01' OR salary > 150000"
+    },
+    {
+      "id": 48,
+      "title": "Salary Range",
+      "difficulty": "medium",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "company",
+      "description": "Find employees whose salary is **between ₹80,000 and ₹120,000** (inclusive).",
+      "hint": "Use BETWEEN operator",
+      "expectedQuery": "SELECT * FROM employees WHERE salary BETWEEN 80000 AND 120000"
+    },
+    {
+      "id": 49,
+      "title": "Conditional Difficulty",
+      "difficulty": "medium",
+      "category": "CASE",
+      "keywords": [
+        "case"
+      ],
+      "database": "university",
+      "description": "Show student **first_name** and a **performance** column: 'Excellent' if CGPA >= 9, 'Good' if >= 7, else 'Average'.",
+      "hint": "Use CASE WHEN ... THEN ... ELSE ... END",
+      "expectedQuery": "SELECT first_name, CASE WHEN cgpa >= 9 THEN 'Excellent' WHEN cgpa >= 7 THEN 'Good' ELSE 'Average' END AS performance FROM students"
+    },
+    {
+      "id": 50,
+      "title": "Salary Category",
+      "difficulty": "medium",
+      "category": "CASE",
+      "keywords": [
+        "case"
+      ],
+      "database": "company",
+      "description": "Show employee **first_name** and **salary_band**: 'High' if salary > 120000, 'Medium' if > 80000, else 'Low'.",
+      "hint": "Use CASE statement",
+      "expectedQuery": "SELECT first_name, CASE WHEN salary > 120000 THEN 'High' WHEN salary > 80000 THEN 'Medium' ELSE 'Low' END AS salary_band FROM employees"
+    },
+    {
+      "id": 51,
+      "title": "Count by Gender",
+      "difficulty": "medium",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "count"
+      ],
+      "database": "hospital",
+      "description": "Count the number of patients by **gender**.",
+      "hint": "GROUP BY gender with COUNT()",
+      "expectedQuery": "SELECT gender, COUNT(*) FROM patients GROUP BY gender"
+    },
+    {
+      "id": 52,
+      "title": "Department Budget Summary",
+      "difficulty": "hard",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "sum",
+        "avg"
+      ],
+      "database": "company",
+      "description": "For each department, show **total salary** and **average salary**.",
+      "hint": "Use both SUM() and AVG() with GROUP BY",
+      "expectedQuery": "SELECT department_id, SUM(salary), AVG(salary) FROM employees GROUP BY department_id"
+    },
+    {
+      "id": 53,
+      "title": "Speciality Count",
+      "difficulty": "medium",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "count"
+      ],
+      "database": "hospital",
+      "description": "Count doctors by their **speciality**.",
+      "hint": "GROUP BY speciality",
+      "expectedQuery": "SELECT speciality, COUNT(*) FROM doctors GROUP BY speciality"
+    },
+    {
+      "id": 54,
+      "title": "Projects by Department",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join",
+        "group by",
+        "count"
+      ],
+      "database": "company",
+      "description": "Show each **department name** and the **number of projects** assigned to it.",
+      "hint": "JOIN departments with projects, then GROUP BY",
+      "expectedQuery": "SELECT d.name, COUNT(p.project_id) FROM departments d JOIN projects p ON d.department_id = p.department_id GROUP BY d.name"
+    },
+    {
+      "id": 55,
+      "title": "Admission Stats per Doctor",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join",
+        "group by",
+        "count"
+      ],
+      "database": "hospital",
+      "description": "Show each doctor's **name** and **number of admissions** they handled.",
+      "hint": "JOIN doctors with admissions, GROUP BY doctor",
+      "expectedQuery": "SELECT d.first_name, d.last_name, COUNT(a.admission_id) FROM doctors d JOIN admissions a ON d.doctor_id = a.doctor_id GROUP BY d.doctor_id, d.first_name, d.last_name"
+    },
+    {
+      "id": 56,
+      "title": "Course Enrollment Count",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join",
+        "group by",
+        "count"
+      ],
+      "database": "university",
+      "description": "For each course, show **course name** and **number of students enrolled**.",
+      "hint": "JOIN courses with enrollments, GROUP BY course",
+      "expectedQuery": "SELECT c.name, COUNT(e.student_id) FROM courses c JOIN enrollments e ON c.course_id = e.course_id GROUP BY c.course_id, c.name"
+    },
+    {
+      "id": 57,
+      "title": "Top 5 Paid Employees",
+      "difficulty": "medium",
+      "category": "LIMIT",
+      "keywords": [
+        "order by",
+        "limit"
+      ],
+      "database": "company",
+      "description": "Show the **top 5 highest paid** employees (first_name, salary).",
+      "hint": "Use ORDER BY DESC with LIMIT 5",
+      "expectedQuery": "SELECT first_name, salary FROM employees ORDER BY salary DESC LIMIT 5"
+    },
+    {
+      "id": 58,
+      "title": "Oldest Patients",
+      "difficulty": "medium",
+      "category": "LIMIT",
+      "keywords": [
+        "order by",
+        "limit"
+      ],
+      "database": "hospital",
+      "description": "Find the **3 oldest patients** (earliest birth_date).",
+      "hint": "ORDER BY birth_date ASC LIMIT 3",
+      "expectedQuery": "SELECT * FROM patients ORDER BY birth_date LIMIT 3"
+    },
+    {
+      "id": 59,
+      "title": "Unique First Names",
+      "difficulty": "hard",
+      "category": "DISTINCT",
+      "keywords": [
+        "distinct",
+        "having"
+      ],
+      "database": "hospital",
+      "description": "Show first names that appear **only once** in the patients table.",
+      "hint": "GROUP BY first_name, HAVING COUNT = 1",
+      "expectedQuery": "SELECT first_name FROM patients GROUP BY first_name HAVING COUNT(*) = 1"
+    },
+    {
+      "id": 60,
+      "title": "Department with Most Employees",
+      "difficulty": "hard",
+      "category": "Subquery",
+      "keywords": [
+        "group by",
+        "order by",
+        "limit"
+      ],
+      "database": "company",
+      "description": "Find the **department_id** with the most employees.",
+      "hint": "GROUP BY, ORDER BY COUNT DESC, LIMIT 1",
+      "expectedQuery": "SELECT department_id FROM employees GROUP BY department_id ORDER BY COUNT(*) DESC LIMIT 1"
+    },
+    {
+      "id": 61,
+      "title": "Students Without Enrollments",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join",
+        "null"
+      ],
+      "database": "university",
+      "description": "Find students who have **no enrollments** (not enrolled in any course).",
+      "hint": "Use LEFT JOIN and check for NULL",
+      "expectedQuery": "SELECT s.* FROM students s LEFT JOIN enrollments e ON s.student_id = e.student_id WHERE e.enrollment_id IS NULL"
+    },
+    {
+      "id": 62,
+      "title": "High Budget Active Projects",
+      "difficulty": "hard",
+      "category": "WHERE Clause",
+      "keywords": [
+        "where"
+      ],
+      "database": "company",
+      "description": "Find **active** projects with budget **above ₹4,000,000**.",
+      "hint": "Combine status and budget conditions",
+      "expectedQuery": "SELECT * FROM projects WHERE status = 'active' AND budget > 4000000"
+    },
+    {
+      "id": 63,
+      "title": "Average Marks by Grade",
+      "difficulty": "hard",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "avg"
+      ],
+      "database": "university",
+      "description": "Find the **average marks** for each **grade** category.",
+      "hint": "GROUP BY grade with AVG(marks)",
+      "expectedQuery": "SELECT grade, AVG(marks) FROM enrollments GROUP BY grade"
+    },
+    {
+      "id": 64,
+      "title": "Employee Manager Names",
+      "difficulty": "hard",
+      "category": "JOIN",
+      "keywords": [
+        "join"
+      ],
+      "database": "company",
+      "description": "Show each employee's **name** and their **manager's name** (Self JOIN).",
+      "hint": "JOIN employees table with itself",
+      "expectedQuery": "SELECT e.first_name AS employee, m.first_name AS manager FROM employees e LEFT JOIN employees m ON e.manager_id = m.employee_id"
+    },
+    {
+      "id": 65,
+      "title": "Patients Per State Summary",
+      "difficulty": "hard",
+      "category": "GROUP BY",
+      "keywords": [
+        "group by",
+        "count",
+        "order by"
+      ],
+      "database": "hospital",
+      "description": "Count patients by **state**, ordered by count (highest first).",
+      "hint": "GROUP BY state, ORDER BY COUNT DESC",
+      "expectedQuery": "SELECT state, COUNT(*) as patient_count FROM patients GROUP BY state ORDER BY patient_count DESC"
+    }
+  ]
+}
