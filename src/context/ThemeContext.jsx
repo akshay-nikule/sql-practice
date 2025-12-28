@@ -6,10 +6,10 @@ export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(() => {
         try {
             const saved = localStorage.getItem('sql_practice_theme');
-            return saved && (saved === 'light' || saved === 'dark') ? saved : 'dark';
+            return saved && (saved === 'light' || saved === 'dark') ? saved : 'light';
         } catch (error) {
             console.warn('Failed to read theme from localStorage:', error);
-            return 'dark';
+            return 'light';
         }
     });
 
@@ -19,7 +19,7 @@ export function ThemeProvider({ children }) {
         } catch (error) {
             console.warn('Failed to save theme to localStorage:', error);
         }
-        
+
         // Apply theme to document
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
