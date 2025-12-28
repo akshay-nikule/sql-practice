@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './SqlEditor.css';
 
-function SqlEditor({ onExecute, savedQuery = '', isLoading = false }) {
+function SqlEditor({ onExecute, savedQuery = '', isLoading = false, isMobile = false }) {
     const [query, setQuery] = useState(savedQuery);
 
     // Update query when savedQuery prop changes
@@ -47,10 +47,10 @@ function SqlEditor({ onExecute, savedQuery = '', isLoading = false }) {
     };
 
     return (
-        <div className="sql-editor">
+        <div className={`sql-editor ${isMobile ? 'mobile' : ''}`}>
             <div className="editor-header">
                 <h3>SQL Editor</h3>
-                <span className="shortcut-hint">Ctrl + Enter to run</span>
+                {!isMobile && <span className="shortcut-hint">Ctrl + Enter to run</span>}
             </div>
 
             <textarea

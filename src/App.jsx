@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useIsDesktop } from './hooks/useMediaQuery';
 import Header from './components/Header';
 import QuestionPanel from './components/QuestionPanel';
 import SqlEditor from './components/SqlEditor';
@@ -34,6 +35,8 @@ const VIEW_MODES = {
 };
 
 function App() {
+  const isDesktop = useIsDesktop();
+  
   const [isLoading, setIsLoading] = useState(true);
   const [dbReady, setDbReady] = useState(false);
   const [initError, setInitError] = useState(null);
@@ -46,6 +49,10 @@ function App() {
   const [expectedResult, setExpectedResult] = useState({ columns: [], values: [], error: null });
   const [isCorrect, setIsCorrect] = useState(null);
   const [completedQuestions, setCompletedQuestions] = useState([]);
+  
+  // Mobile/Tablet sheet states
+  const [showQuestionsSheet, setShowQuestionsSheet] = useState(false);
+  const [showSchemaSheet, setShowSchemaSheet] = useState(false);
 
   // Filter state
   const [filters, setFilters] = useState({
@@ -197,7 +204,12 @@ function App() {
     setCurrentQuestionId(question.id);
     setViewMode(VIEW_MODES.PRACTICE);
     saveCurrentQuestion(question.id);
-  }, [filters.database]);
+    
+    // Close mobile sheets after selection
+    if (!isDesktop) {
+      setShowQuestionsSheet(false);
+    }
+  }, [filters.database, isDesktop]);
 
   const handleBackToSelection = useCallback(() => {
     setViewMode(VIEW_MODES.SELECTION);
@@ -261,8 +273,8 @@ function App() {
   // Question Selection View
   if (viewMode === VIEW_MODES.SELECTION) {
     return (
-      <div className="app">
-        <Header onReset={handleReset} />
+      <div className="app selection-app">
+        <Header onReset={handleReset} isDesktop={isDesktop} />
 
         <main className="main-content selection-view">
           <div className="selection-left">
@@ -293,16 +305,18 @@ function App() {
             </div>
           </div>
 
-          <div className="selection-right">
-            <FilterPanel
-              filters={filters}
-              onFilterChange={setFilters}
-              databases={databases}
-              questionStats={questionStats}
-            />
+          {isDesktop && (
+            <div className="selection-right">
+              <FilterPanel
+                filters={filters}
+                onFilterChange={setFilters}
+                databases={databases}
+                questionStats={questionStats}
+              />
 
-            <SchemaViewer currentDatabase={filters.database} />
-          </div>
+              <SchemaViewer currentDatabase={filters.database} />
+            </div>
+          )}
         </main>
       </div>
     );
@@ -312,45 +326,160 @@ function App() {
   const currentIndex = filteredQuestions.findIndex(q => q.id === currentQuestionId);
 
   return (
-    <div className="app">
-      <Header onReset={handleReset} />
+    <div className="app practice-app">
+      <Header 
+        onReset={handleReset}
+        isDesktop={isDesktop}
+        currentDatabase={filters.database}
+        onDatabaseChange={(db) => setFilters(prev => ({ ...prev, database: db }))}
+        onShowQuestions={() => setShowQuestionsSheet(true)}
+      />
 
       <main className="main-content practice-view">
-        <div className="left-panel">
-          <button className="back-btn" onClick={handleBackToSelection}>
-            ← Back to Questions
-          </button>
+        {isDesktop ? (
+          <>
+            <div className="left-panel">
+              <button className="back-btn" onClick={handleBackToSelection}>
+                ← Back to Questions
+              </button>
 
-          <QuestionPanel
-            question={currentQuestion}
-            currentIndex={currentIndex}
-            totalQuestions={filteredQuestions.length}
-            onPrevious={() => handleNavigate(-1)}
-            onNext={() => handleNavigate(1)}
-            isCompleted={completedQuestions.includes(currentQuestion?.id)}
-            showHint={showHint}
-            onToggleHint={() => setShowHint(!showHint)}
-            databaseName={filters.database}
-          />
+              <QuestionPanel
+                question={currentQuestion}
+                currentIndex={currentIndex}
+                totalQuestions={filteredQuestions.length}
+                onPrevious={() => handleNavigate(-1)}
+                onNext={() => handleNavigate(1)}
+                isCompleted={completedQuestions.includes(currentQuestion?.id)}
+                showHint={showHint}
+                onToggleHint={() => setShowHint(!showHint)}
+                databaseName={filters.database}
+              />
 
-          <SchemaViewer currentDatabase={filters.database} />
-        </div>
+              <SchemaViewer currentDatabase={filters.database} />
+            </div>
 
-        <div className="right-panel">
-          <SqlEditor
-            onExecute={handleExecuteQuery}
-            savedQuery={getSavedQuery(currentQuestion?.id)}
-            isLoading={isExecuting}
-          />
+            <div className="right-panel">
+              <SqlEditor
+                onExecute={handleExecuteQuery}
+                savedQuery={getSavedQuery(currentQuestion?.id)}
+                isLoading={isExecuting}
+              />
 
-          <ResultsTable
-            userResult={userResult}
-            expectedResult={expectedResult}
-            isCorrect={isCorrect}
-            hasExecuted={hasExecuted}
-          />
-        </div>
+              <ResultsTable
+                userResult={userResult}
+                expectedResult={expectedResult}
+                isCorrect={isCorrect}
+                hasExecuted={hasExecuted}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="mobile-container">
+              <div className="mobile-question-banner">
+                <h3>{currentQuestion?.title || 'Loading...'}</h3>
+                <span className={`difficulty ${getDifficultyClass(currentQuestion?.difficulty)}`}>
+                  {currentQuestion?.difficulty}
+                </span>
+              </div>
+
+              <SqlEditor
+                onExecute={handleExecuteQuery}
+                savedQuery={getSavedQuery(currentQuestion?.id)}
+                isLoading={isExecuting}
+                isMobile={true}
+              />
+
+              <ResultsTable
+                userResult={userResult}
+                expectedResult={expectedResult}
+                isCorrect={isCorrect}
+                hasExecuted={hasExecuted}
+                isMobile={true}
+              />
+
+              <button 
+                className="mobile-fab"
+                onClick={() => setShowSchemaSheet(true)}
+                title="View Schema"
+              >
+                📊
+              </button>
+            </div>
+
+            {/* Mobile Sheets */}
+            {showQuestionsSheet && (
+              <MobileQuestionsSheet
+                questions={filteredQuestions}
+                currentQuestionId={currentQuestionId}
+                completedQuestions={completedQuestions}
+                onSelectQuestion={handleSelectQuestion}
+                onClose={() => setShowQuestionsSheet(false)}
+              />
+            )}
+
+            {showSchemaSheet && (
+              <MobileSchemaSheet
+                currentDatabase={filters.database}
+                onClose={() => setShowSchemaSheet(false)}
+              />
+            )}
+          </>
+        )}
       </main>
+    </div>
+  );
+}
+
+function getDifficultyClass(difficulty) {
+  switch (difficulty?.toLowerCase()) {
+    case 'easy': return 'difficulty-easy';
+    case 'medium': return 'difficulty-medium';
+    case 'hard': return 'difficulty-hard';
+    default: return '';
+  }
+}
+
+function MobileQuestionsSheet({ questions, currentQuestionId, completedQuestions, onSelectQuestion, onClose }) {
+  return (
+    <div className="mobile-sheet-overlay" onClick={onClose}>
+      <div className="mobile-sheet" onClick={(e) => e.stopPropagation()}>
+        <div className="mobile-sheet-header">
+          <h3>Questions</h3>
+          <button onClick={onClose} className="close-btn">✕</button>
+        </div>
+        <div className="mobile-sheet-content">
+          {questions.map(q => (
+            <div
+              key={q.id}
+              className={`mobile-question-item ${currentQuestionId === q.id ? 'active' : ''} ${completedQuestions.includes(q.id) ? 'completed' : ''}`}
+              onClick={() => onSelectQuestion(q)}
+            >
+              <div className="question-item-content">
+                <strong>{q.title}</strong>
+                <small>{q.category}</small>
+              </div>
+              {completedQuestions.includes(q.id) && <span className="check-mark">✓</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileSchemaSheet({ currentDatabase, onClose }) {
+  return (
+    <div className="mobile-sheet-overlay" onClick={onClose}>
+      <div className="mobile-sheet" onClick={(e) => e.stopPropagation()}>
+        <div className="mobile-sheet-header">
+          <h3>Schema - {currentDatabase}</h3>
+          <button onClick={onClose} className="close-btn">✕</button>
+        </div>
+        <div className="mobile-sheet-content">
+          <SchemaViewer currentDatabase={currentDatabase} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -4,11 +4,12 @@ function ResultsTable({
     userResult = { columns: [], values: [], error: null },
     expectedResult = { columns: [], values: [], error: null },
     isCorrect = null,
-    hasExecuted = false
+    hasExecuted = false,
+    isMobile = false
 }) {
     if (!hasExecuted) {
         return (
-            <div className="results-container">
+            <div className={`results-container ${isMobile ? 'mobile' : ''}`}>
                 <div className="results-placeholder">
                     <div className="placeholder-icon">📊</div>
                     <p>Run your query to see results here</p>
@@ -100,7 +101,7 @@ function ResultsTable({
     };
 
     return (
-        <div className="results-container">
+        <div className={`results-container ${isMobile ? 'mobile' : ''}`}>
             {isCorrect !== null && (
                 <div className={`result-status ${isCorrect ? 'correct' : 'incorrect'}`} role="status" aria-live="polite">
                     {isCorrect ? (
@@ -117,9 +118,18 @@ function ResultsTable({
                 </div>
             )}
 
-            <div className="results-grid">
-                {renderTable(userResult, 'Your Result', 'user')}
-                {renderTable(expectedResult, 'Expected Result', 'expected')}
+            <div className={`results-grid ${isMobile ? 'stacked' : ''}`}>
+                {!isMobile ? (
+                    <>
+                        {renderTable(userResult, 'Your Result', 'user')}
+                        {renderTable(expectedResult, 'Expected Result', 'expected')}
+                    </>
+                ) : (
+                    <>
+                        {renderTable(userResult, 'Your Result', 'user')}
+                        {isCorrect === false && renderTable(expectedResult, 'Expected Result', 'expected')}
+                    </>
+                )}
             </div>
         </div>
     );
